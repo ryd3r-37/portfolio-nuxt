@@ -6,26 +6,26 @@ const navOpen = ref(false)
 const certifications = ref([
   {
     title: 'Microsoft Word Associate',
-    issuer: 'Certiport',
+    issuer: 'Microsoft 365 Apps',
     date: 'May 2026',
-    code: 'CERT-WORD-2026',
-    desc: 'Demonstrates certified proficiency in document design, structural formatting, and executive output standards.',
-    badge: '/images/personal/CertDatabase_page-0001.jpg'
+    code: 'CREDENTIAL VERIFICATION CODE',
+    desc: 'mBPe - uTFJ',
+    badge: '/images/personal/CertWord_page-0001.jpg'
   },
   {
     title: 'Specialist in Java',
-    issuer: 'Certiport',
+    issuer: 'Certiport | Pearson VUE',
     date: 'May 2026',
-    code: 'CERT-JAVA-2026',
-    desc: 'Demonstrates foundational competence in Java programming logic, object-oriented principles, and application structure.',
+    code: 'CREDENTIAL VERIFICATION CODE',
+    desc: 'waFQx - FaSp',
     badge: '/images/personal/CertJava_page-0001.jpg'
   },
   {
     title: 'IT Specialist - Databases',
     issuer: 'Certiport | Pearson VUE',
     date: 'June 2026',
-    code: 'CERT-DATABASE-2026',
-    desc: 'Validates core database management skills, relational schema concepts, SQL query execution, and data integrity principles.',
+    code: 'CREDENTIAL VERIFICATION CODE',
+    desc: 'wYPQX - 2FvB',
     badge: '/images/personal/CertDatabase_page-0001.jpg'
   }
 ])
