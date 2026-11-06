@@ -24,7 +24,7 @@ const certifications = ref([
     title: 'IT Specialist - Databases',
     issuer: 'Certiport | Pearson VUE',
     date: 'June 2026',
-    code: 'CREDENTIAL VERIFICATION CODE',
+    code: 'CERT-DATABASE-2026',
     desc: 'wYPQX - 2FvB',
     badge: '/images/personal/CertDatabase_page-0001.jpg'
   }
