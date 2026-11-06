@@ -7,14 +7,11 @@ const navOpen = ref(false)
 <template>
   <div class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden">
     
-    <!-- Decorative Glow Accents -->
     <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#ff3b3b]/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-[#ff3b3b]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Sidebar Navigation -->
     <aside class="sticky top-0 h-auto md:h-screen w-full md:w-[240px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-5 flex flex-row md:flex-col justify-between items-center z-50">
       
-      <!-- Top Section: Logo -->
       <div class="w-full flex md:flex-col items-center justify-between md:justify-start gap-4">
         <div class="w-full flex items-center justify-between">
           <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
@@ -24,7 +21,6 @@ const navOpen = ref(false)
           </NuxtLink>
         </div>
 
-        <!-- Mobile Navigation Toggle Button -->
         <div class="flex items-center gap-3 md:hidden">
           <button @click="navOpen = !navOpen" class="cursor-pointer flex flex-col gap-1.5 p-2 bg-transparent border-none" aria-label="Toggle Navigation Menu">
             <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
@@ -34,7 +30,6 @@ const navOpen = ref(false)
         </div>
       </div>
 
-      <!-- Middle Section: Nav Links -->
       <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 w-full my-auto py-6 absolute md:static top-full left-0 bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
         <div class="text-xs font-mono uppercase tracking-widest text-[#ff3b3b] font-bold mb-1">Navigation</div>
         <nav class="flex flex-col items-center gap-3 w-full">
@@ -45,7 +40,6 @@ const navOpen = ref(false)
         </nav>
       </div>
 
-      <!-- Bottom Section: Social Links -->
       <div class="hidden md:flex flex-col items-center gap-3 w-full pt-4 border-t border-[#2a2a2a]">
         <div class="text-[10px] font-mono text-[#888] uppercase tracking-wider">Connect</div>
         <div class="flex items-center justify-center gap-3">
@@ -76,11 +70,9 @@ const navOpen = ref(false)
 
     </aside>
 
-    <!-- Main Content Area -->
     <main class="flex-1 p-6 md:p-12 overflow-y-auto">
       <div class="max-w-[1200px] mx-auto space-y-8">
         
-        <!-- Header Banner -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#2a2a2a] pb-6">
           <div>
             <div class="text-xs font-mono uppercase tracking-widest text-[#ff3b3b] font-bold mb-1">Portfolio // Profile</div>
@@ -91,10 +83,8 @@ const navOpen = ref(false)
           </div>
         </div>
 
-        <!-- Bento Grid Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
-          <!-- Left Main Card (Overview) -->
           <div class="lg:col-span-2 rounded-2xl border border-[#2a2a2a] bg-[#141416]/90 backdrop-blur-sm p-8 shadow-xl flex flex-col justify-between space-y-6">
             <div class="space-y-4">
               <span class="text-xs font-mono uppercase tracking-wider text-[#ff3b3b] bg-[#ff3b3b]/10 px-3 py-1 rounded-full border border-[#ff3b3b]/20">Overview</span>
@@ -109,7 +99,6 @@ const navOpen = ref(false)
               </p>
             </div>
 
-            <!-- Mini Highlight Columns -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-[#2a2a2a]">
               <div>
                 <h3 class="text-xs font-mono font-bold uppercase text-[#ff3b3b] mb-1">Database Optimization</h3>
@@ -126,7 +115,6 @@ const navOpen = ref(false)
             </div>
           </div>
 
-          <!-- Right Card (IT Interests) -->
           <div class="rounded-2xl border border-[#2a2a2a] bg-[#141416]/90 backdrop-blur-sm p-8 shadow-xl flex flex-col justify-between space-y-6">
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -137,7 +125,6 @@ const navOpen = ref(false)
                 Core academic interests and technical domains I actively explore and specialize in:
               </p>
 
-              <!-- Interest Tags List -->
               <div class="space-y-3">
                 <div class="p-3 rounded-xl bg-[#1a1a1c] border border-[#2a2a2a] flex items-center gap-3">
                   <div class="w-2 h-2 rounded-full bg-[#ff3b3b]"></div>
@@ -165,7 +152,6 @@ const navOpen = ref(false)
 
         </div>
 
-        <!-- Bottom Full Width Card -->
         <div class="rounded-2xl border border-[#2a2a2a] bg-[#141416]/90 backdrop-blur-sm p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <span class="text-xs font-mono uppercase tracking-wider text-[#ff3b3b] bg-[#ff3b3b]/10 px-3 py-1 rounded-full border border-[#ff3b3b]/20">Goals</span>

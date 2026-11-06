@@ -34,14 +34,11 @@ const certifications = ref([
 <template>
   <div class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden">
     
-    <!-- Decorative Glow Accents -->
     <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#ff3b3b]/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-[#ff3b3b]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Sidebar Navigation -->
     <aside class="sticky top-0 h-auto md:h-screen w-full md:w-[240px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-5 flex flex-row md:flex-col justify-between items-center z-50">
       
-      <!-- Top Section: Logo -->
       <div class="w-full flex md:flex-col items-center justify-between md:justify-start gap-4">
         <div class="w-full flex items-center justify-between">
           <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
@@ -51,7 +48,6 @@ const certifications = ref([
           </NuxtLink>
         </div>
 
-        <!-- Mobile Navigation Toggle Button -->
         <div class="flex items-center gap-3 md:hidden">
           <button @click="navOpen = !navOpen" class="cursor-pointer flex flex-col gap-1.5 p-2 bg-transparent border-none" aria-label="Toggle Navigation Menu">
             <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
@@ -61,7 +57,6 @@ const certifications = ref([
         </div>
       </div>
 
-      <!-- Middle Section: Nav Links -->
       <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 w-full my-auto py-6 absolute md:static top-full left-0 bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
         <div class="text-xs font-mono uppercase tracking-widest text-[#ff3b3b] font-bold mb-1">Navigation</div>
         <nav class="flex flex-col items-center gap-3 w-full">
@@ -72,7 +67,6 @@ const certifications = ref([
         </nav>
       </div>
 
-      <!-- Bottom Section: Social Links -->
       <div class="hidden md:flex flex-col items-center gap-3 w-full pt-4 border-t border-[#2a2a2a]">
         <div class="text-[10px] font-mono text-[#888] uppercase tracking-wider">Connect</div>
         <div class="flex items-center justify-center gap-3">
@@ -103,11 +97,9 @@ const certifications = ref([
 
     </aside>
 
-    <!-- Main Content Area -->
     <main class="flex-1 p-5 md:p-10 flex justify-center items-center z-10 overflow-y-auto">
       <div class="w-full max-w-[1100px] space-y-6">
     
-        <!-- Header Banner -->
         <div class="flex items-center justify-between border-b border-[#2a2a2a] pb-4">
           <div>
             <span class="text-xs font-mono text-[#ff3b3b] tracking-wider uppercase font-bold">Portfolio // Verified Credentials</span>
@@ -119,7 +111,6 @@ const certifications = ref([
           </div>
         </div>
 
-        <!-- Certifications Bento Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div 
             v-for="cert in certifications" 
