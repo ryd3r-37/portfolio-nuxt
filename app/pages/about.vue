@@ -51,7 +51,6 @@ const roadmap = ref([
         </div>
       </NuxtLink>
 
-      <!-- Theme Switcher -->
       <div class="md:absolute md:top-4 md:right-4 z-10 ml-auto mr-4 md:mr-0 md:ml-0">
         <label for="theme-toggle" class="switch cursor-pointer inline-block relative w-[3.5em] h-[2em]">
           <span class="sr-only">Toggle dark/light theme</span>
@@ -151,7 +150,6 @@ const roadmap = ref([
 
         </div>
 
-        <!-- Bottom Roadmap Horizontal Strip -->
         <section class="rounded-2xl border border-[#2a2a2a] p-6 bg-[#141416] shadow-xl">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
             <div>

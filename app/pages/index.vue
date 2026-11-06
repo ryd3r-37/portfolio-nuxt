@@ -25,8 +25,7 @@ const toggleTheme = () => {
 
 <template>
   <div :class="{ 'light-mode': isLightMode }" class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300">
-    
-    <!-- Sidebar Navigation -->
+
     <aside class="sticky top-0 h-auto md:h-screen w-full md:w-[230px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-4 md:p-5 flex flex-row md:flex-col items-center justify-between md:justify-center gap-4 z-50">
       <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
         <div class="w-20 h-20 bg-[#2a2a2a] rounded-[14px] flex items-center justify-center border border-[#333] overflow-hidden">
@@ -49,14 +48,12 @@ const toggleTheme = () => {
   </label>
 </div>
       
-      
       <button @click="navOpen = !navOpen" class="md:hidden cursor-pointer flex flex-col gap-1.5 p-2 z-50 bg-transparent border-none">
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'opacity-0': navOpen }"></span>
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ '-rotate-45 -translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
       </button>
-      
-      
+       
       <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 absolute md:static top-full left-0 w-full bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
         <div class="text-base font-bold text-[#ff3b3b] hidden md:block">Menu</div>
         <nav class="flex flex-col items-center gap-3 md:gap-2">
@@ -67,8 +64,7 @@ const toggleTheme = () => {
         </nav>
       </div>
     </aside>
-
-    
+  
     <main class="flex-1 flex items-center justify-center p-5 md:p-10">
       <div class="w-full max-w-[850px] rounded-[18px] border border-[#2a2a2a] p-8 md:p-12 bg-[#141416] shadow-2xl flex flex-col md:flex-row items-center gap-8">
         <div class="w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border-2 border-[#ff3b3b] shrink-0 shadow-lg">

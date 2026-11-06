@@ -24,7 +24,6 @@ const toggleTheme = () => {
   }
 }
 
-// Updated with image filename references matching your /public/images/tech-stack/ folder
 const techCategories = ref([
   {
     category: 'Databases & Architecture',
@@ -59,8 +58,7 @@ const techCategories = ref([
 
 <template>
   <div :class="{ 'light-mode': isLightMode }" class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300">
-    
-    <!-- Sidebar Navigation -->
+
     <aside class="sticky top-0 h-auto md:h-screen w-full md:w-[230px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-4 md:p-5 flex flex-row md:flex-col items-center justify-between md:justify-center gap-4 z-50">
       <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
         <div class="w-20 h-20 bg-[#2a2a2a] rounded-[14px] flex items-center justify-center border border-[#333] overflow-hidden">
@@ -68,7 +66,6 @@ const techCategories = ref([
         </div>
       </NuxtLink>
 
-      <!-- Theme Switcher -->
       <div class="md:absolute md:top-4 md:right-4 z-10 ml-auto mr-4 md:mr-0 md:ml-0">
         <label for="theme-toggle" class="switch cursor-pointer inline-block relative w-[3.5em] h-[2em]">
           <span class="sr-only">Toggle dark/light theme</span>
@@ -82,15 +79,13 @@ const techCategories = ref([
           <span class="slider absolute cursor-pointer inset-0 bg-[#20262c] transition-all duration-500 rounded-[30px]"></span>
         </label>
       </div>
-      
-      <!-- Mobile Menu Toggle -->
+
       <button @click="navOpen = !navOpen" class="md:hidden cursor-pointer flex flex-col gap-1.5 p-2 z-50 bg-transparent border-none" aria-label="Toggle Navigation Menu">
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'opacity-0': navOpen }"></span>
         <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ '-rotate-45 -translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
       </button>
       
-      <!-- Nav Links -->
       <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 absolute md:static top-full left-0 w-full bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
         <div class="text-base font-bold text-[#ff3b3b] hidden md:block">Menu</div>
         <nav class="flex flex-col items-center gap-3 md:gap-2">
@@ -102,11 +97,9 @@ const techCategories = ref([
       </div>
     </aside>
 
-    <!-- Main Content Area -->
     <main class="flex-1 p-5 md:p-10 flex justify-center items-center">
       <div class="w-full max-w-[950px] space-y-6">
         
-        <!-- Header Banner -->
         <div class="flex items-center justify-between border-b border-[#2a2a2a] pb-4">
           <div>
             <span class="text-xs font-mono text-[#ff3b3b] tracking-wider uppercase">Portfolio // Tools & Environment</span>
@@ -118,7 +111,6 @@ const techCategories = ref([
           </div>
         </div>
 
-        <!-- Tech Stack Bento Grid with Icons -->
         <div class="space-y-6">
           <section 
             v-for="(cat, idx) in techCategories" 
@@ -137,7 +129,6 @@ const techCategories = ref([
                 :key="item.name"
                 class="px-4 py-2.5 rounded-xl bg-[#1a1a1c] border border-[#2a2a2a] text-sm text-[#ddd] font-mono hover:border-[#ff3b3b]/50 hover:text-white transition cursor-default flex items-center gap-3"
               >
-                <!-- Tech Icon Image -->
                 <div class="w-6 h-6 flex items-center justify-center bg-[#2a2a2a]/50 rounded-md overflow-hidden p-0.5">
                   <img 
                     :src="`/images/tech-stack/${item.icon}`" 
