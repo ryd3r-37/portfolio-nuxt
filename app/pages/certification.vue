@@ -1,28 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
-const isLightMode = ref(false)
 const navOpen = ref(false)
-
-onMounted(() => {
-  if (import.meta.client && localStorage.getItem('theme') === 'light') {
-    isLightMode.value = true
-    document.documentElement.classList.add('light-mode')
-  }
-})
-
-const toggleTheme = () => {
-  isLightMode.value = !isLightMode.value
-  if (import.meta.client) {
-    if (isLightMode.value) {
-      localStorage.setItem('theme', 'light')
-      document.documentElement.classList.add('light-mode')
-    } else {
-      localStorage.setItem('theme', 'dark')
-      document.documentElement.classList.remove('light-mode')
-    }
-  }
-}
 
 const certifications = ref([
   {
@@ -53,103 +32,85 @@ const certifications = ref([
 </script>
 
 <template>
-  <div :class="{ 'light-mode': isLightMode }" class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden">
+  <div class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden">
     
+    <!-- Decorative Glow Accents -->
     <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#ff3b3b]/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-[#ff3b3b]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-<aside class="sticky top-0 h-auto md:h-screen w-full md:w-[240px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-5 flex flex-row md:flex-col justify-between items-center z-50">
-  
-  <div class="w-full flex md:flex-col items-center justify-between md:justify-start gap-4">
-    <div class="w-full flex items-center justify-between">
-      <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
-        <div class="w-16 h-16 bg-[#2a2a2a] rounded-[14px] flex items-center justify-center border border-[#333] overflow-hidden">
-          <img src="/images/background/logo.png" alt="Logo" class="w-full h-full object-cover" />
+    <!-- Sidebar Navigation -->
+    <aside class="sticky top-0 h-auto md:h-screen w-full md:w-[240px] bg-[#141416] border-b md:border-b-0 md:border-r border-[#2a2a2a] p-5 flex flex-row md:flex-col justify-between items-center z-50">
+      
+      <!-- Top Section: Logo -->
+      <div class="w-full flex md:flex-col items-center justify-between md:justify-start gap-4">
+        <div class="w-full flex items-center justify-between">
+          <NuxtLink to="/" class="block transition hover:scale-105 active:scale-95 shrink-0">
+            <div class="w-16 h-16 bg-[#2a2a2a] rounded-[14px] flex items-center justify-center border border-[#333] overflow-hidden">
+              <img src="/images/background/logo.png" alt="Logo" class="w-full h-full object-cover" />
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
 
-      <div class="hidden md:block">
-        <label for="theme-toggle" class="switch cursor-pointer inline-block relative w-[3.2em] h-[1.8em]">
-          <span class="sr-only">Toggle dark/light theme</span>
-          <input 
-            id="theme-toggle" 
-            type="checkbox" 
-            :checked="isLightMode" 
-            @change="toggleTheme" 
-            class="opacity-0 w-0 h-0" 
-          />
-          <span class="slider absolute cursor-pointer inset-0 bg-[#20262c] transition-all duration-500 rounded-[30px]"></span>
-        </label>
+        <!-- Mobile Navigation Toggle Button -->
+        <div class="flex items-center gap-3 md:hidden">
+          <button @click="navOpen = !navOpen" class="cursor-pointer flex flex-col gap-1.5 p-2 bg-transparent border-none" aria-label="Toggle Navigation Menu">
+            <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
+            <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'opacity-0': navOpen }"></span>
+            <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ '-rotate-45 -translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="flex items-center gap-3 md:hidden">
-      <label for="theme-toggle-mobile" class="switch cursor-pointer inline-block relative w-[3em] h-[1.7em]">
-        <span class="sr-only">Toggle dark/light theme</span>
-        <input 
-          id="theme-toggle-mobile" 
-          type="checkbox" 
-          :checked="isLightMode" 
-          @change="toggleTheme" 
-          class="opacity-0 w-0 h-0" 
-        />
-        <span class="slider absolute cursor-pointer inset-0 bg-[#20262c] transition-all duration-500 rounded-[30px]"></span>
-      </label>
-      <button @click="navOpen = !navOpen" class="cursor-pointer flex flex-col gap-1.5 p-2 bg-transparent border-none" aria-label="Toggle Navigation Menu">
-        <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'rotate-45 translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
-        <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ 'opacity-0': navOpen }"></span>
-        <span class="block w-6 h-0.5 bg-[#bbb] transition-all duration-300" :class="{ '-rotate-45 -translate-y-2 bg-[#ff3b3b]': navOpen }"></span>
-      </button>
-    </div>
-  </div>
+      <!-- Middle Section: Nav Links -->
+      <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 w-full my-auto py-6 absolute md:static top-full left-0 bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
+        <div class="text-xs font-mono uppercase tracking-widest text-[#ff3b3b] font-bold mb-1">Navigation</div>
+        <nav class="flex flex-col items-center gap-3 w-full">
+          <NuxtLink to="/" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105">Home</NuxtLink>
+          <NuxtLink to="/about" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105">About</NuxtLink>
+          <NuxtLink to="/techstack" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105">Tech Stack</NuxtLink>
+          <NuxtLink to="/certification" class="text-sm font-semibold text-[#ff3b3b] transition hover:scale-105">Certifications</NuxtLink>
+        </nav>
+      </div>
 
-  <div :class="navOpen ? 'flex' : 'hidden'" class="md:flex flex-col items-center gap-4 w-full my-auto py-6 absolute md:static top-full left-0 bg-[#141416] md:bg-transparent p-5 md:p-0 border-b border-[#2a2a2a] md:border-none z-40">
-    <div class="text-xs font-mono uppercase tracking-widest text-[#ff3b3b] font-bold mb-1">Navigation</div>
-    <nav class="flex flex-col items-center gap-3 w-full">
-      <NuxtLink to="/" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105" active-class="!text-[#ff3b3b] font-semibold">Home</NuxtLink>
-      <NuxtLink to="/about" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105" active-class="!text-[#ff3b3b] font-semibold">About</NuxtLink>
-      <NuxtLink to="/techstack" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105" active-class="!text-[#ff3b3b] font-semibold">Tech Stack</NuxtLink>
-      <NuxtLink to="/certification" class="text-sm font-medium text-[#bbb] hover:text-[#ff3b3b] transition hover:scale-105" active-class="!text-[#ff3b3b] font-semibold">Certifications</NuxtLink>
-    </nav>
-  </div>
+      <!-- Bottom Section: Social Links -->
+      <div class="hidden md:flex flex-col items-center gap-3 w-full pt-4 border-t border-[#2a2a2a]">
+        <div class="text-[10px] font-mono text-[#888] uppercase tracking-wider">Connect</div>
+        <div class="flex items-center justify-center gap-3">
+          <a 
+            href="https://github.com/ryd3r-37" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-9 h-9 rounded-lg bg-[#1a1a1c] border border-[#2a2a2a] flex items-center justify-center text-[#bbb] hover:text-white hover:border-[#ff3b3b]/50 hover:bg-[#ff3b3b]/10 transition"
+            title="GitHub Profile"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          <a 
+            href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-9 h-9 rounded-lg bg-[#1a1a1c] border border-[#2a2a2a] flex items-center justify-center text-[#bbb] hover:text-white hover:border-[#ff3b3b]/50 hover:bg-[#ff3b3b]/10 transition"
+            title="LinkedIn Profile"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
 
-  <div class="hidden md:flex flex-col items-center gap-3 w-full pt-4 border-t border-[#2a2a2a]">
-    <div class="text-[10px] font-mono text-[#888] uppercase tracking-wider">Connect</div>
-    <div class="flex items-center justify-center gap-3">
-      <a 
-        href="https://github.com/ryd3r-37" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="w-9 h-9 rounded-lg bg-[#1a1a1c] border border-[#2a2a2a] flex items-center justify-center text-[#bbb] hover:text-white hover:border-[#ff3b3b]/50 hover:bg-[#ff3b3b]/10 transition"
-        title="GitHub Profile"
-      >
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-      </a>
+    </aside>
 
-      <a 
-        href="https://linkedin.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="w-9 h-9 rounded-lg bg-[#1a1a1c] border border-[#2a2a2a] flex items-center justify-center text-[#bbb] hover:text-white hover:border-[#ff3b3b]/50 hover:bg-[#ff3b3b]/10 transition"
-        title="LinkedIn Profile"
-      >
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-
-</aside>
-
-    <main class="flex-1 p-5 md:p-10 flex justify-center items-center z-10">
+    <!-- Main Content Area -->
+    <main class="flex-1 p-5 md:p-10 flex justify-center items-center z-10 overflow-y-auto">
       <div class="w-full max-w-[1100px] space-y-6">
     
+        <!-- Header Banner -->
         <div class="flex items-center justify-between border-b border-[#2a2a2a] pb-4">
           <div>
-            <span class="text-xs font-mono text-[#ff3b3b] tracking-wider uppercase">Portfolio // Verified Credentials</span>
+            <span class="text-xs font-mono text-[#ff3b3b] tracking-wider uppercase font-bold">Portfolio // Verified Credentials</span>
             <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Certifications</h1>
           </div>
           <div class="hidden sm:block text-right">
@@ -158,6 +119,7 @@ const certifications = ref([
           </div>
         </div>
 
+        <!-- Certifications Bento Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div 
             v-for="cert in certifications" 
