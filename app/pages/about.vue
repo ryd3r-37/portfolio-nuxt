@@ -7,7 +7,6 @@
       </p>
     </div>
 
-    <!-- Technical Proficiency Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
         <h3 class="text-lg font-semibold text-slate-200 mb-3">Database & Backend</h3>

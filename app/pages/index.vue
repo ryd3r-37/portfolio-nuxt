@@ -6,11 +6,11 @@
       </div>
       
       <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-100">
-        Hi, I'm <span class="text-red-500">Juliane Cyruz</span>.
+        Hi, I'm <span class="text-red-500">Juliane Cyruz Diaz</span>.
       </h1>
       
       <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-        Building robust full-stack applications, database schemas, and modern web experiences. Passionate about software development, clean design, and continuous learning.
+        Transforming data into actionable insights while building modern web applications. Passionate about database management, data visualization, and engineering full-stack web experiences.
       </p>
 
       <div class="flex flex-wrap gap-4 pt-4">
