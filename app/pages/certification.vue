@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 const navOpen = ref(false)
+const selectedCertification = ref(null)
 
 const certifications = ref([
   {
@@ -10,7 +11,8 @@ const certifications = ref([
     date: 'May 2026',
     code: 'CREDENTIAL VERIFICATION CODE',
     desc: 'mBPe - uTFJ',
-    badge: '/images/personal/CertWord_page-0001.jpg'
+    badge: '/images/personal/CertWord_page-0001.jpg',
+    verifyUrl: 'https://www.certiport.com/portal/pages/credentialverification.aspx'
   },
   {
     title: 'Specialist in Java',
@@ -18,7 +20,8 @@ const certifications = ref([
     date: 'May 2026',
     code: 'CREDENTIAL VERIFICATION CODE',
     desc: 'waFQx - FaSp',
-    badge: '/images/personal/CertJava_page-0001.jpg'
+    badge: '/images/personal/CertJava_page-0001.jpg',
+    verifyUrl: 'https://www.certiport.com/portal/pages/credentialverification.aspx'
   },
   {
     title: 'IT Specialist - Databases',
@@ -26,13 +29,17 @@ const certifications = ref([
     date: 'June 2026',
     code: 'CERT-DATABASE-2026',
     desc: 'wYPQX - 2FvB',
-    badge: '/images/personal/CertDatabase_page-0001.jpg'
+    badge: '/images/personal/CertDatabase_page-0001.jpg',
+    verifyUrl: 'https://www.certiport.com/portal/pages/credentialverification.aspx'
   }
 ])
 </script>
 
 <template>
-  <div class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden">
+  <div
+    class="bg-[#0f0f10] text-[#ddd] flex min-h-screen flex-col md:flex-row font-inter transition-colors duration-300 relative overflow-hidden"
+    @keydown.esc.window="selectedCertification = null"
+  >
     
     <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#ff3b3b]/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-[#ff3b3b]/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -112,7 +119,7 @@ const certifications = ref([
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div 
+          <article
             v-for="cert in certifications" 
             :key="cert.title"
             class="rounded-2xl border border-[#2a2a2a] p-6 md:p-8 bg-[#141416]/90 backdrop-blur-sm shadow-xl flex flex-col justify-between hover:border-[#ff3b3b]/50 transition duration-300 group"
@@ -125,14 +132,19 @@ const certifications = ref([
                 <span class="text-xs text-[#888] font-mono tracking-wider">{{ cert.date }}</span>
               </div>
 
-              <div class="w-full aspect-[16/10] rounded-xl bg-[#1a1a1c] border border-[#2a2a2a] p-3 mb-6 flex items-center justify-center overflow-hidden group-hover:border-[#ff3b3b]/40 transition">
+              <button
+                type="button"
+                class="w-full aspect-[16/10] rounded-xl bg-[#1a1a1c] border border-[#2a2a2a] p-3 mb-6 flex items-center justify-center overflow-hidden group-hover:border-[#ff3b3b]/40 transition cursor-zoom-in"
+                :aria-label="`Zoom in on ${cert.title} certificate`"
+                @click="selectedCertification = cert"
+              >
                 <img 
                   :src="cert.badge" 
                   :alt="cert.title" 
                   class="w-full h-full object-contain rounded transform group-hover:scale-105 transition duration-500"
                   @error="$event.target.src='/images/background/logo.png'"
                 />
-              </div>
+              </button>
 
               <h2 class="text-xl font-bold text-white group-hover:text-[#ff3b3b] transition leading-snug mb-1">{{ cert.title }}</h2>
               <span class="text-[11px] text-[#888] font-mono block mb-4">{{ cert.code }}</span>
@@ -144,15 +156,44 @@ const certifications = ref([
               <span class="text-[11px] text-[#888] font-mono flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#ff3b3b]"></span> Verified Status
               </span>
-              <span class="text-xs font-semibold text-[#ff3b3b] group-hover:translate-x-1 transition flex items-center gap-1 font-mono">
-                Active &rarr;
-              </span>
+              <a
+                :href="cert.verifyUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold text-[#ff3b3b] hover:translate-x-1 transition flex items-center gap-1 font-mono"
+              >
+                Verify Credential &rarr;
+              </a>
             </div>
-          </div>
+          </article>
         </div>
 
       </div>
     </main>
+
+    <div
+      v-if="selectedCertification"
+      class="fixed inset-0 z-[100] bg-black/90 p-4 flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="`${selectedCertification.title} certificate preview`"
+      @click.self="selectedCertification = null"
+    >
+      <button
+        type="button"
+        class="absolute top-4 right-4 rounded-lg border border-white/20 bg-[#1a1a1c] px-4 py-2 text-sm text-white hover:border-[#ff3b3b] transition"
+        aria-label="Close certificate preview"
+        @click="selectedCertification = null"
+      >
+        Close
+      </button>
+      <img
+        :src="selectedCertification.badge"
+        :alt="selectedCertification.title"
+        class="max-h-[85vh] max-w-[95vw] object-contain rounded shadow-2xl"
+        @click.stop
+      />
+    </div>
 
   </div>
 </template>
